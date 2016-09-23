@@ -5,22 +5,15 @@
     <meta charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
 	<script>
-        $(document).ready(function () {
-
-            $('#button').on('click',function(){
-                console.log("onClick");
-                var url = 'https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=7883fei2khauib&redirect_uri=https%3A%2F%2Fherreramaxi.github.io%2Flinkedin%2Faccept&state=987654321&scope=r_basicprofile';
-
-                $.get(url, function(data){  
-                    console.log("success: " + response);
-                    var pp = response;
-                });
-            });
-        });
+   
 	</script>
 </head>
 <body>
 <h1>This is a test don't worry :)</h1>
-<button id="button">Login</button>
+<a href="https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=7883fei2khauib&redirect_uri=https%3A%2F%2Fherreramaxi.github.io%2Flinkedin%2Faccept&state=987654321&scope=r_basicprofile">
+    <input type="button" id="button" title="login">
+</a>
+
+
 </body>
 </html>
