@@ -35,8 +35,8 @@
                 var pp = document.location.search;
                 var params = pp.substring(pp.indexOf('?') + 1).split("&");
 
-                var code = params[0].substring(params.indexOf("=") + 1);
-                var state = params[1].substring(params.indexOf("=") + 1);
+                var code = params[0].substring(params[0].indexOf("=") + 1);
+                var state = params[1].substring(params[1].indexOf("=") + 1);
 
                 parameters = new Params(code, state);
             }
