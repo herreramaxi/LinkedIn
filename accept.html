@@ -22,30 +22,30 @@
                 };
 
 
-                $.ajax({
-                    type: "POST",
-                    headers: {
+                //$.ajax({
+                //    type: "POST",
+                //    headers: {
                        
-                        "Content-Type": "application/x-www-form-urlencoded",
-                        "Access-Control-Allow-Origin": "*"
-                    },
-                    url: url,
-                    data: data,
-                    success: function (data) {
-                        var pp = data;
+                //        "Content-Type": "application/x-www-form-urlencoded",
+                //        "Access-Control-Allow-Origin": "*"
+                //    },
+                //    url: url,
+                //    data: data,
+                //    success: function (data) {
+                //        var pp = data;
 
-                        console.log(data);
-                    },
-                    error: function (jqxhr, textStatus, error) {
-                        console.log(textStatus);
-                    }
-                });
+                //        console.log(data);
+                //    },
+                //    error: function (jqxhr, textStatus, error) {
+                //        console.log(textStatus);
+                //    }
+                //});
 
-                //$.post(url, data, function (data) {
-                //    var pp = data;
+                $.post(url, data, function (data) {
+                    var pp = data;
 
-                //    console.log(data);
-                //}).fail(function () { console.log("Error!! :)"); });
+                    console.log(data);
+                }).fail(function () { console.log("Error!! :)"); });
             });
 
             function Params(code, state) {
