@@ -56,7 +56,6 @@
 
         }
 
-
         function onLinkedInAuth() {
             IN.API.Profile("me").fields(fields).result(function(data) {
                 console.log(data);
@@ -66,39 +65,42 @@
             });
         };
 
-        var getProfile2= function(){
-            var url= "https://crossorigin.me/https://www.linkedin.com/in/maximiliano-herrera-bocchicchio-79bba615/en"
 
-            $('h1').load(url);
+        //location
+
+        function getWeather() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(gelocationOnSuccess, geolocationErrorHandler);
+            } else {
+                printErrorMessage("Geolocation is not supported by this browser.");
+            }
         }
 
-        var getProfile = function () {
-            $.ajax({
-                type: "GET",
-                url: "https://www.linkedin.com/in/maximiliano-herrera-bocchicchio-79bba615/en"
-            }).done(function(response){
-                $('h1').html(data);
-            });
-        };
-
-        var writeProfileHTML = function () {
-            var url = "https://query.yahooapis.com/v1/public/yql";
-            var urlLinkedin = encodeURIComponent("https://www.linkedin.com/in/maximiliano-herrera-bocchicchio-79bba615/en");
-            var query = "select content from data.headers where url=\""+ urlLinkedin+"\"";
-            $.ajax({
-                url: url,
-                jsonp: "callback",
-                dataType: "jsonp",
-                data: {
-                    q: query,
-                    format: "json"
-                },
-                success: function(data){
-                    $('data').html(data);
-                }
-            });
+        function gelocationOnSuccess(position) {
+            $('#location').text(position.latitude + ","+ position.longitude);
         }
 
+        function geolocationErrorHandler(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    printErrorMessage("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    printErrorMessage("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    printErrorMessage("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    printErrorMessage("An unknown error occurred.");
+                    break;
+            }
+        }
+
+        function printErrorMessage(error) {
+            //$('.to-hidde').attr("hidden", "true");
+            $("#errorMessage").text(error);
+        }
     </script>
 </head>
 <body>
@@ -110,11 +112,11 @@
     <h1 id="name"></h1>
     <h2 id="headline"></h2>
     <div> <img id="profile-img" /></div>
-    <div></div>
+    <h3 id="location"></h3>
 
     <script type="in/Login">
     </script>
 
-    <div id="data"></div>
+    <div id="errorMessage"></div>
 </body>
 </html>
