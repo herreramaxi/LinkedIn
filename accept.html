@@ -14,7 +14,6 @@
                 var url = "https://www.linkedin.com/oauth/v2/accessToken";
                 //Access-Control-Allow-Origin
                 var data = {
-                    "Access-Control-Allow-Origin": "*",
                     "grant_type": "authorization_code",
                     "code": parameters.code,
                     "redirect_uri": "https%3A%2F%2Fherreramaxi.github.io%2Flinkedin%2Faccept",
@@ -22,21 +21,6 @@
                     "client_secret": "k6UNWYv0FEJUFMU5"
                 };
 
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    data: data,
-                    headers: {
-                        //"Accept": "application/json",
-                        //"Content-Type": "application/x-www-form-urlencoded",
-                        "Access-Control-Allow-Origin": "*"
-                    },
-                    success: function (data) {
-                        var pp = data;
-
-                        console.log(data);
-                    }
-                });
 
                 //$.ajax({
                 //    type: "POST",
@@ -57,12 +41,11 @@
                 //    }
                 //});
 
-                //  $.post({ "Access-Control-Allow-Origin": "*" });
-                //$.post(url, data, function (data) {
-                //    var pp = data;
+                $.post(url, data, function (data) {
+                    var pp = data;
 
-                //    console.log(data);
-                //}).fail(function () { console.log("Error!! :)");});
+                    console.log(data);
+                }).fail(function () { console.log("Error!! :)"); });
             });
 
             function Params(code, state) {
