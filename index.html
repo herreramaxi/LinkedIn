@@ -3,17 +3,44 @@
 <head>
     <title>LinkedIn - TestApp</title>
     <meta charset="utf-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
-	<script>
-   
-	</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="//platform.linkedin.com/in.js">
+        api_key: "7883fei2khauib"
+        onLoad: onLinkedInLoad
+        authorize: true
+    </script>
+
+    <script type="text/javascript">
+
+    // Setup an event listener to make an API call once auth is complete
+    function onLinkedInLoad() {
+        IN.Event.on(IN, "auth", getProfileData);
+    }
+
+    // Handle the successful return from the API call
+    function onSuccess(data) {
+        console.log(data);
+    }
+
+    // Handle an error response from the API call
+    function onError(error) {
+        console.log(error);
+    }
+
+    // Use the API call wrapper to request the member's basic profile data
+    function getProfileData() {
+        IN.API.Raw("/people/~").result(onSuccess).error(onError);
+    }
+
+    </script>
 </head>
 <body>
-<h1>This is a test don't worry :)</h1>
-<a href="https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=7883fei2khauib&redirect_uri=https%3A%2F%2Fherreramaxi.github.io%2Flinkedin%2Faccept&state=987654321&scope=r_basicprofile">
-    <input type="button" id="button" title="login">
-</a>
+    <h1>This is a test don't worry :)</h1>
+    <a href="https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=7883fei2khauib&redirect_uri=https%3A%2F%2Fherreramaxi.github.io%2Flinkedin%2Faccept&state=987654321&scope=r_basicprofile">
+        <input type="button" id="button" title="login">
+    </a>
 
-
+    <script type="in/Login">
+    </script>
 </body>
 </html>
