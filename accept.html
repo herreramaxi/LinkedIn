@@ -1,10 +1,53 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>LinkedIn TestApp: Accept</title>
     <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+
+        var parameters = "";
+
+        $(document).ready(function () {
+
+            $("#button").on("click", function () {
+                var url = "https://www.linkedin.com/oauth/v2/accessToken";
+                var data = {
+                    "grant_type": "authorization_code",
+                    "code": parameters.code ,
+                    "redirect_uri": "https%3A%2F%2Fherreramaxi.github.io%2Flinkedin%2Faccept",
+                    "client_id": "7883fei2khauib",//TODO: obtener de alguna manera
+                    "client_secret": "k6UNWYv0FEJUFMU5"
+                };
+                $.post(url, data, function (data) {
+                    var pp = data;
+
+                    console.log(data);
+                });
+            });
+
+            function Params(code, state) {
+                this.code = code;
+                this.state = state;
+            }
+
+            try {
+                var pp = document.location.search;
+                var params = pp.substring(pp.indexOf('?') + 1).split("&");
+
+                var code = params[0].substring(params.indexOf("=") + 1);
+                var state = params[1].substring(params.indexOf("=") + 1);
+
+                parameters = new Params(code, state);
+            }
+            catch (error) {
+                param = "";
+            }
+        });
+    </script>
 </head>
 <body>
-<h1>Accept</h1>
+    <h1>Accept</h1>
+    <button id="button">Press me :)</button>
 </body>
 </html>
