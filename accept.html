@@ -20,30 +20,32 @@
                     "client_id": "7883fei2khauib",//TODO: obtener de alguna manera
                     "client_secret": "k6UNWYv0FEJUFMU5"
                 };
-                $.ajax({
-                    type: "POST",
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/x-www-form-urlencoded",
-                        "Access-Control-Allow-Origin": "*"
-                    },
-                    url: url,
-                  data: data,                                  
-                    success: function (data) {
-                        var pp = data;
+                //$.ajax({
+                //    type: "POST",
+                //    headers: {
+                //        "Accept": "application/json",
+                //        "Content-Type": "application/x-www-form-urlencoded",
+                //        "Access-Control-Allow-Origin": "*"
+                //    },
+                //    url: url,
+                //  data: data,                                  
+                //    success: function (data) {
+                //        var pp = data;
 
-                        console.log(data);
-                    },
-                    error: function (jqxhr, textStatus, error) {
-                        console.log(textStatus);
-                    }
-                });
-
-                //$.post(url, data, function (data) {
-                //    var pp = data;
-
-                //    console.log(data);
+                //        console.log(data);
+                //    },
+                //    error: function (jqxhr, textStatus, error) {
+                //        console.log(textStatus);
+                //    }
                 //});
+
+                $.post(url, data, function (data) {
+                    var pp = data;
+
+                    console.log(data);
+                }, function (jqxhr, textStatus, error) {
+                    console.log(textStatus);
+                });
             });
 
             function Params(code, state) {
