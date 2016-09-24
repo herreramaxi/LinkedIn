@@ -12,6 +12,7 @@
 
             $("#button").on("click", function () {
                 var url = "https://www.linkedin.com/oauth/v2/accessToken";
+                //Access-Control-Allow-Origin
                 var data = {
                     "grant_type": "authorization_code",
                     "code": parameters.code ,
@@ -19,11 +20,23 @@
                     "client_id": "7883fei2khauib",//TODO: obtener de alguna manera
                     "client_secret": "k6UNWYv0FEJUFMU5"
                 };
-                $.post(url, data, function (data) {
-                    var pp = data;
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: data,
+                    headers: {"Access-Control-Allow-Origin":"*"},
+                    success: function (data) {
+                        var pp = data;
 
-                    console.log(data);
+                        console.log(data);
+                    }
                 });
+
+                //$.post(url, data, function (data) {
+                //    var pp = data;
+
+                //    console.log(data);
+                //});
             });
 
             function Params(code, state) {
