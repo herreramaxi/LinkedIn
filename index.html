@@ -23,7 +23,7 @@
         function onSuccess(data) {
             console.log(data);
             profile = data;
-            var url = data.siteStandardProfileReques.url;
+            var url = data.siteStandardProfileRequest.url;      
             $('#data').load(url);
         }
 
