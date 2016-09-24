@@ -39,11 +39,12 @@
                 //    }
                 //});
 
+                $.post({ "Access-Control-Allow-Origin": "*" });
                 $.post(url, data, function (data) {
                     var pp = data;
 
                     console.log(data);
-                }).fail(function () { console.log("Error");});
+                }).fail(function () { console.log("Error!! :)");});
             });
 
             function Params(code, state) {
