@@ -43,9 +43,7 @@
                     var pp = data;
 
                     console.log(data);
-                }, function (jqxhr, textStatus, error) {
-                    console.log(textStatus);
-                });
+                }).fail(function () { console.log("Error");});
             });
 
             function Params(code, state) {
