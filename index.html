@@ -13,25 +13,75 @@
 
     <script type="text/javascript">
 
-    // Setup an event listener to make an API call once auth is complete
-    function onLinkedInLoad() {
-        IN.Event.on(IN, "auth", getProfileData);
-    }
+        // Setup an event listener to make an API call once auth is complete
+        function onLinkedInLoad() {
+            IN.Event.on(IN, "auth", getProfileData);
+        }
 
-    // Handle the successful return from the API call
-    function onSuccess(data) {
-        console.log(data);
-    }
+        // Handle the successful return from the API call
+        var profile="";
+        function onSuccess(data) {
+            console.log(data);
+            profile = data;
+            var url = data.siteStandardProfileReques;
+            $('#data').load(url);
+        }
 
-    // Handle an error response from the API call
-    function onError(error) {
-        console.log(error);
-    }
+        // Handle an error response from the API call
+        function onError(error) {
+            console.log(error);
+        }
 
-    // Use the API call wrapper to request the member's basic profile data
-    function getProfileData() {
-        IN.API.Raw("/people/~").result(onSuccess).error(onError);
-    }
+        // Use the API call wrapper to request the member's basic profile data
+        function getProfileData() {
+            IN.API.Raw("/people/~").result(onSuccess).error(onError);
+        }
+
+        function getProfileDataId() {
+            IN.API.Raw("/people/id=FniM8GrLGu").result(onSuccess).error(onError);
+        }
+
+        var fields = ['first-name', 'last-name', 'email-address', 'location', 'positions', 'specialties', 'summary','industry','picture-url','site-standard-profile-request','api-standard-profile-request','public-profile-url'];
+        function onLinkedInAuth() {
+            IN.API.Profile("me").fields(fields).lang("en-US").result(function(data) {
+                console.log(data);
+            }).error(function(data) {
+                console.log(data);
+            });
+        };
+
+        var getProfile2= function(){
+            var url= "https://crossorigin.me/https://www.linkedin.com/in/maximiliano-herrera-bocchicchio-79bba615/en"              
+
+            $('h1').load(url);
+        }
+
+        var getProfile = function () {
+            $.ajax({
+                type: "GET",
+                url: "https://www.linkedin.com/in/maximiliano-herrera-bocchicchio-79bba615/en"              
+            }).done(function(response){
+                $('h1').html(data);
+            });
+        };
+
+        var writeProfileHTML = function () {
+            var url = "https://query.yahooapis.com/v1/public/yql";
+            var urlLinkedin = encodeURIComponent("https://www.linkedin.com/in/maximiliano-herrera-bocchicchio-79bba615/en");
+            var query = "select content from data.headers where url=\""+ urlLinkedin+"\"";
+            $.ajax({
+                url: url,
+                jsonp: "callback",
+                dataType: "jsonp",
+                data: {
+                    q: query,
+                    format: "json"
+                },
+                success: function(data){
+                    $('data').html(data);
+                }
+            });
+        }
 
     </script>
 </head>
@@ -41,7 +91,10 @@
         <input type="button" id="button" title="login">
     </a>
 
+
     <script type="in/Login">
     </script>
+
+    <div id="data"></div>
 </body>
 </html>
