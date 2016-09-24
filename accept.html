@@ -14,6 +14,7 @@
                 var url = "https://www.linkedin.com/oauth/v2/accessToken";
                 //Access-Control-Allow-Origin
                 var data = {
+                    "Access-Control-Allow-Origin": "*" ,
                     "grant_type": "authorization_code",
                     "code": parameters.code ,
                     "redirect_uri": "https%3A%2F%2Fherreramaxi.github.io%2Flinkedin%2Faccept",
@@ -39,7 +40,7 @@
                 //    }
                 //});
 
-                $.post({ "Access-Control-Allow-Origin": "*" });
+              //  $.post({ "Access-Control-Allow-Origin": "*" });
                 $.post(url, data, function (data) {
                     var pp = data;
 
