@@ -14,13 +14,30 @@
                 var url = "https://www.linkedin.com/oauth/v2/accessToken";
                 //Access-Control-Allow-Origin
                 var data = {
-                    "Access-Control-Allow-Origin": "*" ,
+                    "Access-Control-Allow-Origin": "*",
                     "grant_type": "authorization_code",
-                    "code": parameters.code ,
+                    "code": parameters.code,
                     "redirect_uri": "https%3A%2F%2Fherreramaxi.github.io%2Flinkedin%2Faccept",
                     "client_id": "7883fei2khauib",//TODO: obtener de alguna manera
                     "client_secret": "k6UNWYv0FEJUFMU5"
                 };
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: data,
+                    headers: {
+                        //"Accept": "application/json",
+                        //"Content-Type": "application/x-www-form-urlencoded",
+                        "Access-Control-Allow-Origin": "*"
+                    },
+                    success: function (data) {
+                        var pp = data;
+
+                        console.log(data);
+                    }
+                });
+
                 //$.ajax({
                 //    type: "POST",
                 //    headers: {
@@ -29,7 +46,7 @@
                 //        "Access-Control-Allow-Origin": "*"
                 //    },
                 //    url: url,
-                //  data: data,                                  
+                //  data: data,
                 //    success: function (data) {
                 //        var pp = data;
 
@@ -40,12 +57,12 @@
                 //    }
                 //});
 
-              //  $.post({ "Access-Control-Allow-Origin": "*" });
-                $.post(url, data, function (data) {
-                    var pp = data;
+                //  $.post({ "Access-Control-Allow-Origin": "*" });
+                //$.post(url, data, function (data) {
+                //    var pp = data;
 
-                    console.log(data);
-                }).fail(function () { console.log("Error!! :)");});
+                //    console.log(data);
+                //}).fail(function () { console.log("Error!! :)");});
             });
 
             function Params(code, state) {
