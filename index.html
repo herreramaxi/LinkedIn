@@ -41,6 +41,7 @@
                 $('#name').text(profile.firstName + profile.lastName);
                 $('#headline').text(profile.headline);
                 $('#profile-img').attr("src",profile.pictureUrl);
+                getGeoLocation();
             }).error(onError);
 
         }
@@ -68,7 +69,7 @@
 
         //location
 
-        function getWeather() {
+        function getGeoLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(gelocationOnSuccess, geolocationErrorHandler);
             } else {
