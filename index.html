@@ -69,44 +69,46 @@
 
         //location
 
-        //$(document).ready(function(){
-        function getGeoLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(gelocationOnSuccess, geolocationErrorHandler);
-            } else {
-                printErrorMessage("Geolocation is not supported by this browser.");
+        $(document).ready(function(){
+            function getGeoLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(gelocationOnSuccess, geolocationErrorHandler);
+                } else {
+                    printErrorMessage("Geolocation is not supported by this browser.");
+                }
             }
-        }
 
-        function gelocationOnSuccess(position) {
-            $('#location').text(position.latitude + ","+ position.longitude);
-        }
-
-        function geolocationErrorHandler(error) {
-            switch (error.code) {
-                case error.PERMISSION_DENIED:
-                    printErrorMessage("User denied the request for Geolocation.");
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    printErrorMessage("Location information is unavailable.");
-                    break;
-                case error.TIMEOUT:
-                    printErrorMessage("The request to get user location timed out.");
-                    break;
-                case error.UNKNOWN_ERROR:
-                    printErrorMessage("An unknown error occurred.");
-                    break;
+            function gelocationOnSuccess(position) {
+                $('#location').text(position.latitude + ","+ position.longitude);
             }
-        }
 
-        function printErrorMessage(error) {
-            //$('.to-hidde').attr("hidden", "true");
-            $("#errorMessage").text(error);
-        }
+            function geolocationErrorHandler(error) {
+                switch (error.code) {
+                    case error.PERMISSION_DENIED:
+                        printErrorMessage("User denied the request for Geolocation.");
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        printErrorMessage("Location information is unavailable.");
+                        break;
+                    case error.TIMEOUT:
+                        printErrorMessage("The request to get user location timed out.");
+                        break;
+                    case error.UNKNOWN_ERROR:
+                        printErrorMessage("An unknown error occurred.");
+                        break;
+                }
+            }
 
-        $("#btnGetLocation").on("click",function(){
-            getGeoLocation();})
-        //});
+            function printErrorMessage(error) {
+                //$('.to-hidde').attr("hidden", "true");
+                $("#errorMessage").text(error);
+            }
+
+            $("#btnGetLocation").on("click",function(){
+                getGeoLocation();})
+
+            getGeoLocation();
+        });
     </script>
 </head>
 <body>
