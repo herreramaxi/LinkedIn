@@ -79,7 +79,7 @@
             }
 
             function gelocationOnSuccess(position) {
-                $('#location').text(position.latitude + ","+ position.longitude);
+                $('#location').text(position.coords.latitude + ","+ position.coords.longitude);
             }
 
             function geolocationErrorHandler(error) {
@@ -107,7 +107,7 @@
             $("#btnGetLocation").on("click",function(){
                 getGeoLocation();})
 
-            getGeoLocation();
+          //  getGeoLocation();
         });
     </script>
 </head>
