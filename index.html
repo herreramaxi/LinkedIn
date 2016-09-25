@@ -69,6 +69,7 @@
 
         //location
 
+        //$(document).ready(function(){
         function getGeoLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(gelocationOnSuccess, geolocationErrorHandler);
@@ -102,6 +103,10 @@
             //$('.to-hidde').attr("hidden", "true");
             $("#errorMessage").text(error);
         }
+
+        $("#btnGetLocation").on("click",function(){
+            getGeoLocation();})
+        //});
     </script>
 </head>
 <body>
@@ -119,5 +124,6 @@
     </script>
 
     <div id="errorMessage"></div>
+    <button id="btnGetLocation">Get Location</button>
 </body>
 </html>
