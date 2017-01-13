@@ -44,6 +44,7 @@
                 $('#headline').text(profile.headline);
                 $('#profile-img').attr("src",profile.pictureUrl);
                 $('#country').text(profile.location.name);
+                $('#industry').text(profile.industry);
                 
             }).error(onError);
         }
@@ -124,7 +125,7 @@
     <div> <img id="profile-img" /></div>
     <h3 id="location"></h3>
  
-    <p id="industry"></p>
+    <strong>Idustry: </strong><span id="industry"></span>
     <p id="country"></p>
     <script type="in/Login">
     </script>
