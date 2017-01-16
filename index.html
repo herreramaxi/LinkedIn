@@ -77,12 +77,12 @@
         function getCurrentPosition(prof){
             var currentPosition = prof.positions.values.first();
 
-            $.each( prof.positions.values, function( key, value ) {
-                if( value.isCurrent){
+            $.each(prof.positions.values, function( key, value ) {
+                if(value.isCurrent){
                     currentPosition = value;
-                    break;
+                    return false;
                 }
-            } );
+            });
 
             // alert( key + ": " + value + ", " + value.company.name + ', isCurrent: ' + value.isCurrent);
             return currentPosition;
