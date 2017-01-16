@@ -40,12 +40,17 @@
             var fieldsString = 'first-name,last-name,headline,email-address,location,positions,specialties,summary,industry,picture-url,site-standard-profile-request,api-standard-profile-request,public-profile-url'
             IN.API.Raw("/people/~:("+fieldsString+")").result(function(data){
                 profile = data;
-                $('#name').text(profile.firstName + profile.lastName);
+                $('#name').text(profile.firstName + ' ' + profile.lastName);
                 $('#headline').text(profile.headline);
                 $('#profile-img').attr("src",profile.pictureUrl);
                 $('#country').text(profile.location.name);
                 $('#industry').text(profile.industry);
-                
+
+                var position = getCurrentPosition(profile);
+
+                $('#company').text(position.company.name);
+                $('#position').text(position.title);
+
             }).error(onError);
         }
 
@@ -68,6 +73,20 @@
                 console.log(data);
             });
         };
+
+        function getCurrentPosition(prof){
+            var currentPosition = prof.positions.values.first();
+
+            $.each( prof.positions.values, function( key, value ) {
+                if( value.isCurrent){
+                    currentPosition = value;
+                    break;
+                }
+            } );
+
+            // alert( key + ": " + value + ", " + value.company.name + ', isCurrent: ' + value.isCurrent);
+            return currentPosition;
+        }
 
         //location
 
@@ -124,10 +143,13 @@
     <h2 id="headline"></h2>
     <div> <img id="profile-img" /></div>
     <h3 id="location"></h3>
- 
+
     <strong>Idustry: </strong><span id="industry"></span>
-    <p id="country"></p>
-    <script type="in/Login">
+    <strong>Country: </strong><p id="country"></p>
+    <strong>Company: </strong><p id="company"></p>
+    <strong>Position: </strong><p id="position"></p>
+
+    <script type="in/Login">    
     </script>
 
     <div id="errorMessage"></div>
