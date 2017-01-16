@@ -75,7 +75,7 @@
         };
 
         function getCurrentPosition(prof){
-            var currentPosition = prof.positions.values.first();
+            var currentPosition = prof.positions.values.length >0 ? prof.positions.values[0] :null;
 
             $.each(prof.positions.values, function( key, value ) {
                 if(value.isCurrent){
@@ -149,7 +149,7 @@
     <strong>Company: </strong><p id="company"></p>
     <strong>Position: </strong><p id="position"></p>
 
-    <script type="in/Login">    
+    <script type="in/Login">
     </script>
 
     <div id="errorMessage"></div>
